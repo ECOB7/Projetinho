@@ -15,14 +15,3 @@ def buscar_usuario_por_id(request, id):
         "ativo": usuario.ativo
     }
     return JsonResponse(data)
-
-def listar_tarefas(request):
-    tarefas = Tarefa.objects.all()
-    lista_tarefas = []
-    for t in tarefas:
-        lista_tarefas.append({
-            "id": t.id,
-            "titulo": t.titulo, 
-            "responsavel": t.usuario_responsavel.nome if t.usuario_responsavel else "Nenhum"
-        })
-    return JsonResponse(lista_tarefas, safe=False)
